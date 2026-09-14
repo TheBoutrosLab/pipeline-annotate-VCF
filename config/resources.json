@@ -1,70 +1,128 @@
 {
     "f2": {
-        "run_validate_PipeVal": {
-            "cpus": {
-                "min": 1,
-                "fraction": 0.5,
-                "max": 1
-            },
-            "memory": {
-                "min": "1 GB",
-                "fraction": 0.25,
-                "max": "1 GB"
-            }
-        },
-        "run_command_Tool": {
-            "cpus": {
-                "min": 1,
-                "fraction": 0.5,
-                "max": 1
-            },
-            "memory": {
-                "min": "1 GB",
-                "fraction": 0.25,
-                "max": "1 GB"
-            }
-        }
-    },
-    "f8": {
-        "run_validate_PipeVal": {
-            "cpus": {
-                "min": 1,
-                "fraction": 0.125,
-                "max": 1
-            },
-            "memory": {
-                "min": "1 GB",
-                "fraction": 0.06,
-                "max": "1 GB"
-            }
-        },
-        "run_command_Tool": {
+        "annotate_VCF_SnpEff": {
             "cpus": {
                 "min": 2,
-                "fraction": 0.25,
+                "fraction": 1.0,
                 "max": 2
             },
             "memory": {
-                "min": "4 GB",
+                "min": "1 GB",
+                "fraction": 0.79,
+                "max": "3 GB"
+            }
+        },
+        "run_validate_PipeVal": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.5,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.26,
+                "max": "1 GB"
+            }
+        },
+        "annotate_VCF_VEP": {
+            "cpus": {
+                "min": 2,
+                "fraction": 1.0,
+                "max": 2
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.79,
+                "max": "3 GB"
+            }
+        },
+        "filter_annotation_VEP": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.5,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
                 "fraction": 0.25,
-                "max": "4 GB"
+                "max": "3 GB"
+            }
+        },
+        "annotate_VCF_SnpSift": {
+            "cpus": {
+                "min": 2,
+                "fraction": 1.0,
+                "max": 2
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.79,
+                "max": "3 GB"
+            }
+        },
+        "compress_VCF_bgzip": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.5,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.26,
+                "max": "1 GB"
+            }
+        },
+        "index_VCF_tabix": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.5,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.26,
+                "max": "1 GB"
+            }
+        },
+        "generate_sha512sum": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.5,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.26,
+                "max": "1 GB"
+            }
+        },
+        "normalize_VCF_BCFtools": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.5,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.26,
+                "max": "1 GB"
+            }
+        },
+        "run_Funcotator_GATK": {
+            "cpus": {
+                "min": 2,
+                "fraction": 1.0,
+                "max": 2
+            },
+            "memory": {
+                "min": "3 GB",
+                "fraction": 0.79,
+                "max": "3 GB"
             }
         }
     },
     "f16": {
-        "run_validate_PipeVal": {
-            "cpus": {
-                "min": 1,
-                "fraction": 0.06,
-                "max": 1
-            },
-            "memory": {
-                "min": "1 GB",
-                "fraction": 0.03,
-                "max": "1 GB"
-            }
-        },
-        "run_command_Tool": {
+        "annotate_VCF_SnpEff": {
             "cpus": {
                 "min": 4,
                 "fraction": 0.25,
@@ -72,12 +130,174 @@
             },
             "memory": {
                 "min": "8 GB",
-                "fraction": 0.25,
+                "fraction": 0.26,
                 "max": "8 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
+        "run_Funcotator_GATK": {
+            "cpus": {
+                "min": 12,
+                "fraction": 0.75,
+                "max": 12
+            },
+            "memory": {
+                "min": "16 GB",
+                "fraction": 0.53,
+                "max": "16 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
+        "run_validate_PipeVal": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.06,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.03,
+                "max": "1 GB"
+            }
+        },
+        "annotate_VCF_VEP": {
+            "cpus": {
+                "min": 12,
+                "fraction": 0.75,
+                "max": 12
+            },
+            "memory": {
+                "min": "30 GB",
+                "fraction": 0.99,
+                "max": "30 GB"
+            }
+        },
+        "filter_annotation_VEP": {
+            "cpus": {
+                "min": 2,
+                "fraction": 0.13,
+                "max": 2
+            },
+            "memory": {
+                "min": "2 GB",
+                "fraction": 0.06,
+                "max": "4 GB"
+            }
+        },
+        "annotate_VCF_SnpSift": {
+            "cpus": {
+                "min": 4,
+                "fraction": 0.25,
+                "max": 4
+            },
+            "memory": {
+                "min": "8 GB",
+                "fraction": 0.26,
+                "max": "8 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
+        "compress_VCF_bgzip": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.06,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.03,
+                "max": "1 GB"
+            }
+        },
+        "index_VCF_tabix": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.06,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.03,
+                "max": "1 GB"
+            }
+        },
+        "generate_sha512sum": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.06,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.03,
+                "max": "1 GB"
+            }
+        },
+        "normalize_VCF_BCFtools": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.06,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.03,
+                "max": "1 GB"
             }
         }
     },
     "f32": {
+        "annotate_VCF_SnpEff": {
+            "cpus": {
+                "min": 8,
+                "fraction": 0.25,
+                "max": 8
+            },
+            "memory": {
+                "min": "16 GB",
+                "fraction": 0.26,
+                "max": "16 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
+        "run_Funcotator_GATK": {
+            "cpus": {
+                "min": 16,
+                "fraction": 0.5,
+                "max": 16
+            },
+            "memory": {
+                "min": "32 GB",
+                "fraction": 0.53,
+                "max": "32 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
         "run_validate_PipeVal": {
             "cpus": {
                 "min": 1,
@@ -86,11 +306,35 @@
             },
             "memory": {
                 "min": "1 GB",
-                "fraction": 0.01,
+                "fraction": 0.02,
                 "max": "1 GB"
             }
         },
-        "run_command_Tool": {
+        "annotate_VCF_VEP": {
+            "cpus": {
+                "min": 24,
+                "fraction": 0.75,
+                "max": 24
+            },
+            "memory": {
+                "min": "60 GB",
+                "fraction": 0.99,
+                "max": "60 GB"
+            }
+        },
+        "filter_annotation_VEP": {
+            "cpus": {
+                "min": 2,
+                "fraction": 0.06,
+                "max": 2
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.05,
+                "max": "4 GB"
+            }
+        },
+        "annotate_VCF_SnpSift": {
             "cpus": {
                 "min": 8,
                 "fraction": 0.25,
@@ -98,12 +342,102 @@
             },
             "memory": {
                 "min": "16 GB",
-                "fraction": 0.25,
+                "fraction": 0.26,
                 "max": "16 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
+        "compress_VCF_bgzip": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.03,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.02,
+                "max": "1 GB"
+            }
+        },
+        "index_VCF_tabix": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.03,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.02,
+                "max": "1 GB"
+            }
+        },
+        "generate_sha512sum": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.03,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.02,
+                "max": "1 GB"
+            }
+        },
+        "normalize_VCF_BCFtools": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.03,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.02,
+                "max": "1 GB"
             }
         }
     },
     "f72": {
+        "annotate_VCF_SnpEff": {
+            "cpus": {
+                "min": 32,
+                "fraction": 0.44,
+                "max": 32
+            },
+            "memory": {
+                "min": "72 GB",
+                "fraction": 0.53,
+                "max": "72 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
+        "run_Funcotator_GATK": {
+            "cpus": {
+                "min": 32,
+                "fraction": 0.44,
+                "max": 32
+            },
+            "memory": {
+                "min": "72 GB",
+                "fraction": 0.53,
+                "max": "72 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
         "run_validate_PipeVal": {
             "cpus": {
                 "min": 1,
@@ -116,46 +450,274 @@
                 "max": "1 GB"
             }
         },
-        "run_command_Tool": {
+        "annotate_VCF_VEP": {
             "cpus": {
-                "min": 18,
-                "fraction": 0.25,
-                "max": 18
+                "min": 24,
+                "fraction": 0.33,
+                "max": 24
             },
             "memory": {
-                "min": "36 GB",
-                "fraction": 0.25,
-                "max": "36 GB"
+                "min": "60 GB",
+                "fraction": 0.44,
+                "max": "60 GB"
+            }
+        },
+        "filter_annotation_VEP": {
+            "cpus": {
+                "min": 2,
+                "fraction": 0.03,
+                "max": 2
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.05,
+                "max": "6 GB"
+            }
+        },
+        "annotate_VCF_SnpSift": {
+            "cpus": {
+                "min": 32,
+                "fraction": 0.44,
+                "max": 32
+            },
+            "memory": {
+                "min": "72 GB",
+                "fraction": 0.53,
+                "max": "72 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
+        "compress_VCF_bgzip": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.01,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.01,
+                "max": "1 GB"
+            }
+        },
+        "index_VCF_tabix": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.01,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.01,
+                "max": "1 GB"
+            }
+        },
+        "generate_sha512sum": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.01,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.01,
+                "max": "1 GB"
+            }
+        },
+        "normalize_VCF_BCFtools": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.01,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.01,
+                "max": "1 GB"
             }
         }
     },
     "m64": {
+        "annotate_VCF_SnpEff": {
+            "cpus": {
+                "min": 32,
+                "fraction": 0.5,
+                "max": 32
+            },
+            "memory": {
+                "min": "72 GB",
+                "fraction": 0.07,
+                "max": "72 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
+        "run_Funcotator_GATK": {
+            "cpus": {
+                "min": 32,
+                "fraction": 0.5,
+                "max": 32
+            },
+            "memory": {
+                "min": "72 GB",
+                "fraction": 0.07,
+                "max": "72 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
         "run_validate_PipeVal": {
             "cpus": {
                 "min": 1,
-                "fraction": 0.01,
+                "fraction": 0.02,
                 "max": 1
             },
             "memory": {
                 "min": "1 GB",
-                "fraction": 0.01,
+                "fraction": 0.00,
                 "max": "1 GB"
             }
         },
-        "run_command_Tool": {
+        "annotate_VCF_SnpSift": {
             "cpus": {
-                "min": 16,
-                "fraction": 0.25,
-                "max": 16
+                "min": 32,
+                "fraction": 0.5,
+                "max": 32
             },
             "memory": {
-                "min": "256 GB",
-                "fraction": 0.25,
-                "max": "256 GB"
+                "min": "72 GB",
+                "fraction": 0.07,
+                "max": "72 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
+        "compress_VCF_bgzip": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.02,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.0,
+                "max": "1 GB"
+            }
+        },
+        "index_VCF_tabix": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.02,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.0,
+                "max": "1 GB"
+            }
+        },
+        "generate_sha512sum": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.02,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.0,
+                "max": "1 GB"
+            }
+        },
+        "normalize_VCF_BCFtools": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.02,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.0,
+                "max": "1 GB"
+            }
+        },
+        "annotate_VCF_VEP": {
+            "cpus": {
+                "min": 24,
+                "fraction": 0.38,
+                "max": 24
+            },
+            "memory": {
+                "min": "60 GB",
+                "fraction": 0.06,
+                "max": "60 GB"
+            }
+        },
+        "filter_annotation_VEP": {
+            "cpus": {
+                "min": 2,
+                "fraction": 0.03,
+                "max": 2
+            },
+            "memory": {
+                "min": "4 GB",
+                "fraction": 0.05,
+                "max": "16 GB"
             }
         }
     },
     "default": {
+        "annotate_VCF_SnpEff": {
+            "cpus": {
+                "min": 2,
+                "fraction": 0.44,
+                "max": 32
+            },
+            "memory": {
+                "min": "4 GB",
+                "fraction": 0.53,
+                "max": "72 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
+        "run_Funcotator_GATK": {
+            "cpus": {
+                "min": 2,
+                "fraction": 0.44,
+                "max": 32
+            },
+            "memory": {
+                "min": "4 GB",
+                "fraction": 0.53,
+                "max": "72 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
         "run_validate_PipeVal": {
             "cpus": {
                 "min": 1,
@@ -168,16 +730,94 @@
                 "max": "1 GB"
             }
         },
-        "run_command_Tool": {
+        "annotate_VCF_VEP": {
             "cpus": {
                 "min": 2,
-                "fraction": 0.25,
-                "max": 18
+                "fraction": 0.33,
+                "max": 24
             },
             "memory": {
                 "min": "4 GB",
-                "fraction": 0.25,
-                "max": "36 GB"
+                "fraction": 0.44,
+                "max": "60 GB"
+            }
+        },
+        "filter_annotation_VEP": {
+            "cpus": {
+                "min": 2,
+                "fraction": 0.03,
+                "max": 2
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.05,
+                "max": "8 GB"
+            }
+        },
+        "annotate_VCF_SnpSift": {
+            "cpus": {
+                "min": 2,
+                "fraction": 0.44,
+                "max": 32
+            },
+            "memory": {
+                "min": "4 GB",
+                "fraction": 0.53,
+                "max": "72 GB"
+            },
+            "retry_strategy": {
+                "memory": {
+                    "strategy": "exponential",
+                    "operand": 2
+                }
+            }
+        },
+        "compress_VCF_bgzip": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.01,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.01,
+                "max": "1 GB"
+            }
+        },
+        "index_VCF_tabix": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.01,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.01,
+                "max": "1 GB"
+            }
+        },
+        "generate_sha512sum": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.01,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.01,
+                "max": "1 GB"
+            }
+        },
+        "normalize_VCF_BCFtools": {
+            "cpus": {
+                "min": 1,
+                "fraction": 0.01,
+                "max": 1
+            },
+            "memory": {
+                "min": "1 GB",
+                "fraction": 0.01,
+                "max": "1 GB"
             }
         }
     }
