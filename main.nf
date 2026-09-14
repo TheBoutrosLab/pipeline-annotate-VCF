@@ -39,6 +39,8 @@ log.info """\
 
 include { run_validate_PipeVal } from './external/pipeline-Nextflow-module/modules/PipeVal/validate/main.nf'
 include { indexFile } from './external/pipeline-Nextflow-module/modules/common/indexFile/main.nf'
+include { compress_index_VCF } from './external/pipeline-Nextflow-module/modules/common/index_VCF_tabix/main.nf'
+include { normalize_VCF_BCFtools } from './module/common.nf'
 
 
 // Main workflow here
@@ -82,6 +84,42 @@ workflow {
             name: 'input_validation.txt', newLine: true,
             storeDir: "${params.output_dir_base}/validation"
         )
+
+
+    /**
+    *   Normalize VCF
+    */
+    bcftools_meta = meta_base.map{ base_m ->
+        base_m + [
+            "workflow_output_dir": "${params.output_dir_base}/BCFtools-${params.bcftools_version}",
+            "log_dir_prefix": "BCFtools-${params.bcftools_version}"
+        ]
+    }
+
+    ich.set{ input_ch_annotate }
+
+    if (!params.skip_normalization) {
+        normalize_VCF_BCFtools(
+            bcftools_meta,
+            ich.map{ sample -> [sample.vcf, sample.index] }
+        )
+
+        compress_index_VCF(
+            bcftools_meta.combine(normalize_VCF_BCFtools.out.norm_vcf)
+                .map{ n_vcf ->
+                    it[0] + [
+                        "output_dir": it[0].workflow_output_dir,
+                        "log_output_dir": "${it[0].log_output_dir}/process-log/${it[0].log_dir_prefix}",
+                        "id": params.sample_id
+                    ],
+                    it[1]
+                }
+        )
+
+        compress_index_VCF.out.index_out
+            .map{ compressed_sample -> ["vcf": compressed_sample[1], "index": compressed_sample[2]] }
+            .set{ input_ch_annotate }
+    }
 
 
 
