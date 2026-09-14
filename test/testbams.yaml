@@ -1,0 +1,7 @@
+---
+patient_id: 'patient_id'
+input:
+  BAM:
+    normal:
+      - id: normal_sample_id
+        path: /path/to/normal.bam

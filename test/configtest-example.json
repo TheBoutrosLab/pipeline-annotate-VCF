@@ -1,0 +1,207 @@
+{
+  "nextflow_version": "23.10.0",
+  "config": [
+    "config/template.config"
+  ],
+  "params_file": "test/testbams.yaml",
+  "cpus": 72,
+  "memory_gb": 143,
+  "nf_params": {
+    "output_dir": "/tmp/outputs"
+  },
+  "envvars": {
+    "SLURM_JOB_ID": "851543"
+  },
+  "mocks": {
+    "check_path": "",
+    "parse_bam_header": {
+      "read_group": [
+        {
+          "SM": "4915723"
+        }
+      ]
+    }
+  },
+  "dated_fields": [
+    "params.log_output_dir",
+    "report.file",
+    "timeline.file",
+    "trace.file"
+  ],
+  "version_fields": [
+    "manifest.version",
+    "params.log_output_dir",
+    "params.output_dir_base",
+    "report.file",
+    "trace.file",
+    "timeline.file"
+  ],
+  "expected_result": {
+    "docker": {
+      "all_group_ids": "$(for i in `id --real --groups`; do echo -n \"--group-add=$i \"; done)",
+      "enabled": true,
+      "runOptions": "-u $(id -u):$(id -g) $(for i in `id --real --groups`; do echo -n \"--group-add=$i \"; done)",
+      "uid_and_gid": "-u $(id -u):$(id -g)"
+    },
+    "manifest": {
+      "author": "Authors Name",
+      "description": "A template for Nextflow pipelines",
+      "name": "pipeline-name-nf",
+      "version": "VER.SI.ON"
+    },
+    "params": {
+      "blcds_registered_dataset": false,
+      "dataset_id": "",
+      "docker_container_registry": "ghcr.io/uclahs-cds",
+      "docker_image_tool_a": "ghcr.io/uclahs-cds/tool_a:x.x.x",
+      "input": {
+        "BAM": {
+          "normal": [
+            {
+              "id": "normal_sample_id",
+              "path": "/path/to/normal.bam"
+            }
+          ]
+        }
+      },
+      "log_output_dir": "/tmp/outputs/pipeline-name-nf-VER.SI.ON/patient_id/log-pipeline-name-nf-VER.SI.ON-19970704T165655Z",
+      "max_cpus": "72",
+      "max_memory": "143 GB",
+      "min_cpus": "1",
+      "min_memory": "1 MB",
+      "output_dir": "/tmp/outputs",
+      "output_dir_base": "/tmp/outputs/pipeline-name-nf-VER.SI.ON/patient_id",
+      "patient_id": "patient_id",
+      "samples_to_process": [
+        {
+          "id": "4915723",
+          "path": "/path/to/normal.bam",
+          "sample_type": "normal"
+        }
+      ],
+      "tool_a_version": "x.x.x",
+      "ucla_cds": true,
+      "variable_name": "foo-bar",
+      "work_dir": "/scratch/851543"
+    },
+    "process": {
+      "afterScript": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "closure": ""
+      },
+      "cache": true,
+      "containerOptions": {
+        "1": "--cpu-shares 1024 --cpus $task.cpus",
+        "2": "--cpu-shares 1024 --cpus $task.cpus",
+        "3": "--cpu-shares 1024 --cpus $task.cpus",
+        "closure": "--cpu-shares 1024 --cpus $task.cpus"
+      },
+      "cpus": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "closure": "closure()"
+      },
+      "echo": true,
+      "errorStrategy": {
+        "1": "finish",
+        "2": "finish",
+        "3": "finish",
+        "closure": "finish"
+      },
+      "executor": "local",
+      "ext": {
+        "capture_logs": true,
+        "commonAfterScript": {
+          "1": "",
+          "2": "",
+          "3": "",
+          "closure": ""
+        },
+        "log_dir": {
+          "1": "ext",
+          "2": "ext",
+          "3": "ext",
+          "closure": "ext"
+        }
+      },
+      "maxRetries": "1",
+      "memory": "143 GB",
+      "withLabel:process_high": {
+        "cpus": {
+          "1": "12",
+          "2": "24",
+          "3": "36",
+          "closure": "closure()"
+        },
+        "memory": {
+          "1": "84 GB",
+          "2": "143 GB",
+          "3": "143 GB",
+          "closure": "closure()"
+        }
+      },
+      "withLabel:process_low": {
+        "cpus": {
+          "1": "2",
+          "2": "4",
+          "3": "6",
+          "closure": "closure()"
+        },
+        "memory": {
+          "1": "3 GB",
+          "2": "6 GB",
+          "3": "9 GB",
+          "closure": "closure()"
+        }
+      },
+      "withLabel:process_medium": {
+        "cpus": {
+          "1": "6",
+          "2": "12",
+          "3": "18",
+          "closure": "closure()"
+        },
+        "memory": {
+          "1": "42 GB",
+          "2": "84 GB",
+          "3": "126 GB",
+          "closure": "closure()"
+        }
+      },
+      "withLabel:resource_allocation_tool_name_command_name": {
+        "cpus": {
+          "1": "2",
+          "2": "4",
+          "3": "6",
+          "closure": "closure()"
+        },
+        "memory": {
+          "1": "3 GB",
+          "2": "6 GB",
+          "3": "9 GB",
+          "closure": "closure()"
+        }
+      },
+      "withName:example_process": {
+        "cpus": "2",
+        "memory": "5 GB"
+      }
+    },
+    "report": {
+      "enabled": true,
+      "file": "/tmp/outputs/pipeline-name-nf-VER.SI.ON/patient_id/log-pipeline-name-nf-VER.SI.ON-19970704T165655Z/nextflow-log/report.html"
+    },
+    "timeline": {
+      "enabled": true,
+      "file": "/tmp/outputs/pipeline-name-nf-VER.SI.ON/patient_id/log-pipeline-name-nf-VER.SI.ON-19970704T165655Z/nextflow-log/timeline.html"
+    },
+    "trace": {
+      "enabled": true,
+      "file": "/tmp/outputs/pipeline-name-nf-VER.SI.ON/patient_id/log-pipeline-name-nf-VER.SI.ON-19970704T165655Z/nextflow-log/trace.txt"
+    },
+    "workDir": "/scratch/851543"
+  }
+}
