@@ -2,22 +2,11 @@
 
 nextflow.enable.dsl=2
 
-// Include processes and workflows here
-include { run_validate_PipeVal } from './external/pipeline-Nextflow-module/modules/PipeVal/validate/main.nf'
 
-include { generate_standard_filename } from './external/pipeline-Nextflow-module/modules/common/generate_standardized_filename/main.nf'
-include { indexFile } from './external/pipeline-Nextflow-module/modules/common/indexFile/main.nf'
-
-// Add this pipeline's custom modules here
-include { run_command_Tool } from './module/EXAMPLE_checksum.nf'
-
-// include { tool_name_command_name } from './module/module-name'
-
-// Log info here
 log.info """\
-        ======================================
-        T E M P L A T E - N F  P I P E L I N E
-        ======================================
+        =========================
+         A N N O T A T E - V C F
+        =========================
         Boutros Lab
 
         Current Configuration:
@@ -26,19 +15,21 @@ log.info """\
             version: ${workflow.manifest.version}
 
         - input:
-            input a: ${params.variable_name}
-            ...
+            sample_id: ${params.sample_id}
+            algorithm: ${params.algorithm}
+            input.vcf: ${params.input.vcf}
+            genome_version: ${params.genome_version}
+            reference: ${params.reference}
 
         - output:
-            output a: ${params.output_path}
-            ...
+            output_dir: ${params.output_dir_base}
+            output_log_dir: ${params.output_log_dir}
 
-        - options:
-            option a: ${params.option_name}
-            ...
+        - other options:
+            save_intermediate_files: ${params.save_intermediate_files}
 
         Tools Used:
-            tool a: ${params.docker_image_name}
+            SnpEff: ${params.docker_image_SnpEff}
 
         ------------------------------------
         Starting workflow...
@@ -46,55 +37,44 @@ log.info """\
         """
         .stripIndent()
 
-// Establish input channels here
-Channel
-    .fromList(params.samples_to_process)
-    .map { sample ->
-        return tuple(sample.id, sample.path, sample.sample_type)
-    }
-    .set { samplesToProcessChannel }
+include { run_validate_PipeVal } from './external/pipeline-Nextflow-module/modules/PipeVal/validate/main.nf'
+include { indexFile } from './external/pipeline-Nextflow-module/modules/common/indexFile/main.nf'
 
-Channel
-    .fromList(params.samples_to_process)
-    .map{ it -> [it['path'], indexFile(it['path'])] }
-    .flatten()
-    .set { files_to_validate_ch }
-
-// These are a few potential channels that can be mixed in
-
-/*
-Channel
-    .from(
-        params.reference,
-        params.reference_index,
-        params.reference_dict
-        )
-    .set { reference_ch }
-
-// Decription of input channel
-Channel
-    .fromPath(params.variable_name)
-    .ifEmpty { error "Cannot find: ${params.variable_name}" }
-    .set { input_ch_variable_name }
-
-files_to_validate_ch = files_to_validate_ch
-    .mix(reference_ch)
-    .mix(input_ch_variable_name)
-*/
 
 // Main workflow here
 workflow {
+    Channel.from( params.input.vcf )
+        .map{ raw_param_vcf ->
+            [
+                "vcf": raw_param_vcf,
+                "index": indexFile(raw_param_vcf)
+            ]
+        }
+        .set { ich }
 
-
+    /**
+    *   Input validation
+    */
     base_meta = Channel.value([
         'log_output_dir': params.log_output_dir,
-        'output_dir': params.output_dir_base
+        'output_dir': params.output_dir_base,
+        'output_dir_base': params.output_dir_base
     ])
+
+    module_meta = base_meta.map{ base_m ->
+        base_m + [
+            'log_output_dir': "${params.log_output_dir}/process-log"
+        ]
+    }
+
+    ich.map{ sample -> [sample.vcf, sample.index] }
+        .flatten()
+        .set{ input_ch_validate }
 
     // Validate input files
     run_validate_PipeVal(
-        base_meta.combine(files_to_validate_ch)
-        )
+        module_meta.combine(input_ch_validate)
+    )
 
     // Capture validation results
     run_validate_PipeVal.out.validation_result
@@ -103,17 +83,7 @@ workflow {
             storeDir: "${params.output_dir_base}/validation"
         )
 
-    // Add pipeline-specific workflow steps here
-    run_command_Tool(
-        run_validate_PipeVal.out.validated_file
-        )
 
-    /*
-    tool_name_command_name(
-        samplesToProcessChannel,
-        input_ch_variable_name
-        )
-    */
 
     workflow.onComplete = {
         WorkflowFinalizer.completeWorkflow(workflow, params);
