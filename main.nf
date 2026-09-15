@@ -41,6 +41,7 @@ include { run_validate_PipeVal } from './external/pipeline-Nextflow-module/modul
 include { indexFile } from './external/pipeline-Nextflow-module/modules/common/indexFile/main.nf'
 include { compress_index_VCF } from './external/pipeline-Nextflow-module/modules/common/index_VCF_tabix/main.nf'
 include { normalize_VCF_BCFtools } from './module/common.nf'
+include { workflow_Funcotator } from './module/workflow-Funcotator.nf'
 
 
 // Main workflow here
@@ -92,7 +93,7 @@ workflow {
     bcftools_meta = meta_base.map{ base_m ->
         base_m + [
             "workflow_output_dir": "${params.output_dir_base}/BCFtools-${params.bcftools_version}",
-            "log_dir_prefix": "BCFtools-${params.bcftools_version}"
+            "log_dir_prefix": "BCFtools-${params.BCFtools_version}"
         ]
     }
 
@@ -106,14 +107,14 @@ workflow {
 
         compress_index_VCF(
             bcftools_meta.combine(normalize_VCF_BCFtools.out.norm_vcf)
-                .map{ n_vcf ->
-                    it[0] + [
-                        "output_dir": it[0].workflow_output_dir,
-                        "log_output_dir": "${it[0].log_output_dir}/process-log/${it[0].log_dir_prefix}",
+                .map{ n_vcf -> [
+                    n_vcf[0] + [
+                        "output_dir": n_vcf[0].workflow_output_dir,
+                        "log_output_dir": "${n_vcf[0].log_output_dir}/process-log/${n_vcf[0].log_dir_prefix}",
                         "id": params.sample_id
                     ],
-                    it[1]
-                }
+                    n_vcf[1]
+                ]}
         )
 
         compress_index_VCF.out.index_out
@@ -122,6 +123,22 @@ workflow {
     }
 
 
+    /**
+    *   Funcotator
+    */
+    if ('Funcotator' in params.algorithm) {
+        funcotator_meta = meta_base.map{ base_m ->
+            base_m + [
+                "workflow_output_dir": "${params.output_dir_base}/Funcotator-${GATK_version}",
+                "log_dir_prefix": "Funcotator-${params.GATK_version}"
+            ]
+        }
+
+        workflow_Funcotator(
+            funcotator_meta,
+            input_ch_annotate
+        )
+    }
 
     workflow.onComplete = {
         WorkflowFinalizer.completeWorkflow(workflow, params);
