@@ -4,17 +4,14 @@ process annotate_VCF_VEP {
     container params.docker_image_VEP
     containerOptions "--env HOME=/home/\${USER} ${params.container_mount_flag} ${params.vep_cache}:/home/\${USER}/.vep"
 
-    publishDir path: "${params.workflow_output_dir}/output",
+    publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.tsv",
         mode: "copy"
-    publishDir path: "${params.workflow_output_log_dir}",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
+    ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" }
 
     input:
-    path input_VCF
-    path input_VCF_index
+    val META
+    tuple path(vcf), path(vcf_index)
     path genome_fasta
     path genome_fasta_index
     path annotation_gtf
@@ -22,7 +19,6 @@ process annotate_VCF_VEP {
 
     output:
     path output_file, emit: 'vep_tsv'
-    path ".command.*"
 
     script:
     output_filename = generate_standard_filename(
@@ -47,7 +43,7 @@ process annotate_VCF_VEP {
         --assembly ${params.genome_assembly_version} \
         --no_intergenic \
         --chr ${params.chromosomes} \
-        -i ${input_VCF} \
+        -i ${vcf} \
         -o ${output_file} \
         --fasta ${genome_fasta} \
         --custom ${annotation_gtf},${params.genome_annotation_version},gtf
@@ -58,20 +54,17 @@ process filter_annotation_VEP {
     container params.docker_image_VEP
     containerOptions "--e HOME=/home/\${USER} ${params.container_mount_flag} ${params.vep_cache}:/home/\${USER}/.vep"
 
-    publishDir path: "${params.workflow_output_dir}/output",
+    publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.tsv",
         mode: "copy"
-    publishDir path: "${params.workflow_output_log_dir}",
-        pattern: ".command.*",
-        mode: "copy",
-        saveAs: { "${task.process.replace(':', '/')}/log${file(it).getName()}" }
+    ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" }
 
     input:
+    val META
     path vep_tsv
 
     output:
     path filtered_tsv, emit: 'filtered_tsv'
-    path ".command.*"
 
     script:
     output_filename = generate_standard_filename(

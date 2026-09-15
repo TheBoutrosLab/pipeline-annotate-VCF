@@ -16,27 +16,39 @@ VEP Options:
 """
 
 
-include { annotate_VCF_VEP; filter_annotation_VEP } from "${moduleDir}/VEP"
-include { generate_sha512sum; compress_VCF_bgzip } from "${moduleDir}/common"
+include { annotate_VCF_VEP; filter_annotation_VEP } from "./VEP.nf"
+include { generate_checksum_PipeVal } from '../external/pipeline-Nextflow-module/modules/PipeVal/generate-checksum/main.nf'
 
 workflow workflow_VEP {
     take:
-        vcf
-        vcf_index
+    META
+    input_ch_sample
 
     main:
-        annotate_VCF_VEP(
-            vcf,
-            vcf_index,
-            params.genome_fasta,
-            "${params.genome_fasta}.fai",
-            params.annotation_gtf,
-            "${params.annotation_gtf}.tbi"
-            )
-        filter_annotation_VEP(
-            annotate_VCF_VEP.out.vep_tsv
-            )
-        compress_VCF_bgzip(filter_annotation_VEP.out.filtered_tsv)
-        file_for_sha512 = compress_VCF_bgzip.out.gz
-        generate_sha512sum(file_for_sha512)
+    annotate_VCF_VEP(
+        META,
+        input_ch_sample.map{ sample -> [sample.vcf, sample.index] },
+        params.genome_fasta,
+        "${params.genome_fasta}.fai",
+        params.annotation_gtf,
+        "${params.annotation_gtf}.tbi"
+    )
+
+    filter_annotation_VEP(
+        META,
+        annotate_VCF_VEP.out.vep_tsv
+    )
+
+    generate_checksum_PipeVal(
+        META.combine(filter_annotation_VEP.out.filtered_tsv)
+            .map{ f_out -> [
+                f_out[0] + [
+                    "output_dir": "${f_out[0].output_dir_base}/output",
+                    "checksum_alg": "sha512",
+                    "docker_image": params.docker_image_valdate,
+                    "log_output_dir": "${f_out[0].log_output_dir}/process-log/${f_out[0].log_dir_prefix}"
+                ],
+                f_out[1]
+            ]}
+    )
 }
