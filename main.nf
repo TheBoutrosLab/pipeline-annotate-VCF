@@ -42,6 +42,7 @@ include { indexFile } from './external/pipeline-Nextflow-module/modules/common/i
 include { compress_index_VCF } from './external/pipeline-Nextflow-module/modules/common/index_VCF_tabix/main.nf'
 include { normalize_VCF_BCFtools } from './module/common.nf'
 include { workflow_Funcotator } from './module/workflow-Funcotator.nf'
+include { workflow_VEP } from './module/workflow-VEP.nf'
 
 
 // Main workflow here
@@ -136,6 +137,23 @@ workflow {
 
         workflow_Funcotator(
             funcotator_meta,
+            input_ch_annotate
+        )
+    }
+
+    /**
+    *   VEP
+    */
+    if ('VEP' in params.algorithm) {
+        vep_meta = meta_base.map{ base_m ->
+            base_m + [
+                "workflow_output_dir": "${params.output_dir_base}/VEP-${VEP_version}",
+                "log_dir_prefix": "VEP-${params.VEP_version}"
+            ]
+        }
+
+        workflow_VEP(
+            vep_meta,
             input_ch_annotate
         )
     }
