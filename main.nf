@@ -41,6 +41,7 @@ include { run_validate_PipeVal } from './external/pipeline-Nextflow-module/modul
 include { indexFile } from './external/pipeline-Nextflow-module/modules/common/indexFile/main.nf'
 include { compress_index_VCF } from './external/pipeline-Nextflow-module/modules/common/index_VCF_tabix/main.nf'
 include { normalize_VCF_BCFtools } from './module/common.nf'
+include { workflow_SnpEff } from './module/workflow-SnpEff.nf'
 include { workflow_Funcotator } from './module/workflow-Funcotator.nf'
 include { workflow_VEP } from './module/workflow-VEP.nf'
 
@@ -123,6 +124,23 @@ workflow {
             .set{ input_ch_annotate }
     }
 
+
+    /**
+    *   SnpEff
+    */
+    if ('SnpEff' in params.algorithm) {
+        snpeff_meta = meta_base.map{ base_m ->
+            base_m + [
+                "workflow_output_dir": "${params.output_dir_base}/SnpEff-${SnpEff_version}",
+                "log_dir_prefix": "SnpEff-${params.SnpEff_version}"
+            ]
+        }
+
+        workflow_SnpEff(
+            snpeff_meta,
+            input_ch_annotate
+        )
+    }
 
     /**
     *   Funcotator
