@@ -1,0 +1,15 @@
+---
+on:
+  release:
+    types: [published]
+
+permissions: read-all
+jobs:
+  add_release_asset:
+    runs-on: ubuntu-latest
+    name: A job to add a release asset with submodules
+    steps:
+      - id: release-asset
+        uses: theboutroslab/tool-Nextflow-action/add-source-with-submodules@v1
+        with:
+          my-token: ${{ secrets.BL_SBP_REPO_READ_TOKEN_YP }}
