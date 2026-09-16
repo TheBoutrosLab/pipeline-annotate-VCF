@@ -15,15 +15,8 @@
     - [SnpEff Specific Configuration](#snpeff-specific-configuration)
     - [GATK Funcotator Specific Configuration](#gatk-funcotator-specific-configuration)
     - [VEP Specific Configuration](#vep-specific-configuration)
+  - [Profiles](#profiles)
   - [Outputs](#outputs)
-  - [Testing and Validation](#testing-and-validation)
-    - [Test](#test)
-      - [Test Data Set](#test-data-set)
-      - [Running Tests with NFTest](#running-tests-with-nftest)
-    - [Performance Validation](#performance-validation)
-      - [SnpEff / SnpSift](#snpeff--snpsift)
-      - [GATK Funcotator](#gatk-funcotator)
-      - [Validation Tool](#validation-tool)
   - [References](#references)
   - [Discussions](#discussions)
   - [Contributors](#contributors)
@@ -36,15 +29,12 @@ Pipeline-annotate-VCF is an annotation pipeline that contains multiple tools to 
 ---
 
 ## How To Run
-For new users, please reference the [How to run a nextflow pipeline](https://confluence.mednet.ucla.edu/display/BOUTROSLAB/How+to+run+a+nextflow+pipeline) in Confluence.
 
 1. Copy [template.config](config/template.config) to your own directory and update params section of [template.config](config/template.config) file.
 
 2. Copy [template.yaml](input/template.yaml) to your own directory and update the sample information in [template.yaml](input/template.yaml).
 
-3. Use the [submission tool](https://github.com/uclahs-cds/tool-submit-nf) to submit the pipeline. The stable release of the submission tool is located in `/hot/software/package/tool-submit-nf/Python/release/`, and the stable release of `annotate-VCF` pipeline can be found in `/hot/software/pipeline/pipeline-annotate-VCF/Nextflow/release`.
-
-> **Note**: Because this pipeline uses an image stored in the GitHub Container Registry, you must follow the steps listed in the [Docker Introduction](https://confluence.mednet.ucla.edu/display/BOUTROSLAB/Docker+Introduction#DockerIntroduction-GitHubContainerRegistryGitHubContainerRegistry|Setup) on Confluence to set up a PAT for your GitHub account and log into the registry on the cluster before running this pipeline.
+3. Run the pipeline with `nextflow run ...` through either local runs or through scheduler job.
 
 ### Requirements
 Currently supported Nextflow versions: `v23.04.2`
@@ -82,11 +72,10 @@ To run the pipeline, one input `*.YAML` and one `template.config` are needed. Wh
 | Input and Input Parameter | Required | Type | Description | Location |
 | ------------------------- | -------- | ---- | ----------- | -------- |
 | algorithm | yes | string | tools to be used when running the annotation pipeline | config |
-| genome_version | yes | string | genome version for SnpEff Database, genome version correlates with the database directory name and can be found under `/hot/resource/tool-specific-input/SnpEff/data/` | config |
+| genome_version | yes | string | genome version for SnpEff Database, genome version correlates with the database directory name and can be found under `/path/to/tool-specific-input/SnpEff/data/` | config |
 | output_dir | yes | path | location where outputs will be saved  | config File |
 | save_intermediate_files | yes | boolean | whether to save intermediate files, default is `false` | Config File |
 | work_dir | no | path | path of working directory for Nextflow. When included in the sample config file, Nextflow intermediate files and logs will be saved to this directory. With ucla_cds, the default is `/scratch` and should only be changed for testing/development. Changing this directory to `/hot` or `/tmp` can lead to high server latency and potential disk space limitations, respectively. |
-| `docker_container_registry` | optional | string | Registry containing tool Docker images. Default: `ghcr.io/uclahs-cds` |
 
 ### BCFtools Specific Configuration
 | Input and Input Parameter | Required | Type | Description | Location |
@@ -98,15 +87,15 @@ To run the pipeline, one input `*.YAML` and one `template.config` are needed. Wh
 ### SnpEff Specific Configuration
 | Input and Input Parameter | Required | Type | Description | Location |
 | ------------------------- | -------- | ---- | ----------- | -------- |
-| SnpEff_data_dir | yes | path | the directory that stores the SnpEff file, default is `/hot/resource/tool-specific-input/SnpEff/data/` | config |
+| SnpEff_data_dir | yes | path | the directory that stores the SnpEff file, default is `/pth/to/tool-specific-input/SnpEff/data/` | config |
 | SnpEff_download | yes | boolean | whether to download SnpEff from online database, default is `false` | config |
-| SnpSift_annotate_database | yes | list | the databases used for `SnpSift annotate` process, such as ClinVar (`/hot/resource/database/ClinVar-20211016/original/GRCh38/clinvar_20211016.vcf.gz`) | config |
+| SnpSift_annotate_database | yes | list | the databases used for `SnpSift annotate` process, such as ClinVar, AlphaMissense | config |
 
 ### GATK Funcotator Specific Configuration
 | Input and Input Parameter | Required | Type | Description | Location |
 | ------------------------- | -------- | ---- | ----------- | -------- |
 | reference | yes | path | reference `.fa` file (`.fai` and `.dict` file must exist in same directory) | config |
-| Funcotator_data_source | yes | path | path to a data source folder for Funcotator, pre-downloaded database can be found here `/hot/resource/tool-specific-input/Funcotator/` | config |
+| Funcotator_data_source | yes | path | path to a data source folder for Funcotator, pre-downloaded database can be found here `/path/to/tool-specific-input/Funcotator/` | config |
 | Funcotator_output_format | yes | string | output format of Funcotator, the two options are `VCF` and `MAF` | config |
 | Funcotator_extra_options | no | string | extra options used for Funcotator | config |
 | Funcotator_b37_to_hg19_conversion | yes | boolean | used when the reference is GRCh37, to allow the conversion of hg19 database to fit GRCh37 reference, default is `false`, see GATK documentation [here](https://gatk.broadinstitute.org/hc/en-us/articles/360035889931-Funcotator-Information-and-Tutorial#2.2.6).  | config |
@@ -125,6 +114,16 @@ To run the pipeline, one input `*.YAML` and one `template.config` are needed. Wh
 
 ---
 
+## Profiles
+
+Profiles can be selected to control which containerization system will be used. Profile selection can be passed to the Nextflow run command using `-profile`. Available profiles:
+
+- `docker` - Use Docker as the containerization system
+- `apptainer` - Use Apptainer as the containerization system
+- `singularity` - Use Singularity as the containerization system
+
+---
+
 ## Outputs
 
  Output and Output Parameter | Type | Description |
@@ -134,58 +133,6 @@ To run the pipeline, one input `*.YAML` and one `template.config` are needed. Wh
 |`SnpEff-{version}_{dataset_id}_{sample_id}_genes.txt` | `.txt` | SnpEff gene list (SnpEff)|
 |`VEP-{version}_{dataset_id}_{sample_id}.txt.gz`| `.txt.gz` | VEP annotation results |
 | `report.html`, `timeline.html`, `trace.txt`  | `.html` & `.txt` | Nextflow logs  |
-
----
-
-## Testing and Validation
-
-Testing was performed primarily on the Boutros Lab SLURM Development cluster using an F16 node.
-
-### Test
-
-#### Test Data Set
-
-The somatic SNVs of prostate cancer sample CPCG0000000196 processed by mutect2, stored in `/hot/software/pipeline/pipeline-annotate-VCF/Nextflow/development/input/data`.
-
-| Data Set | Run Configuration | Sample VCF |
-| ------ | ------ | ------- |
-| CPCG0000000196 | `/hot/software/pipeline/pipeline-annotate-VCF/Nextflow/development/input/yaml/CPCG0000000196.yaml` | `/hot/software/pipeline/pipeline-annotate-VCF/Nextflow/development/input/data/CPCG0000000196/mutect2_CPCG0000000196-normal_filtered_pass.vcf.gz` |
-
-#### Running Tests with NFTest
-
-Ensure NFTest is installed on your system. If it is not installed follow installation instructions in the [NFTest documentation](https://github.com/uclahs-cds/tool-NFTest).
-
-To test annotators run the command with the annotator of interest:
-```
-nftest run [test-snpeff test-snpsift test-funcotator test-all]
-```
-
-Additionally it is possible to modify the `nftest.yml` file to tune testing.
-All testing assets can be found in the `test/` directory.
-
-For larger jobs a [cluster submission tool](https://github.com/uclahs-cds/tool-submit-nf) is available for NFTest.
-
-### Performance Validation
-Pipeline-annotate-VCF version: 1.0.0
-Duration: 54m 12s
-
-#### SnpEff / SnpSift
-* SnpSift is running with ClinVar database (`/hot/resource/database/ClinVar-20211016/original/GRCh38/clinvar_20211016.vcf.gz`) in this test.
-
-|process_name                                 |duration     |peak_rss |peak_vmem |
-|:--------------------------------------------|:----------------|:-------|:-------------|
-|annotate_VCF_SnpEff   | 1m 14s         | 4.1 GB |10.9 GB       |
-|annotate_VCF_SnpSift      |7.9s       | 350.1 MB |32.2 GB        |
-
-#### GATK Funcotator
-
-|process_name                                 |duration     |cpu |peak_vmem |
-|:--------------------------------------------|:----------------|:-------|:-------------|
-|run_Funcotator_GATK   | 52m 24s         | 4.7 GB |27.3 GB       |
-
-#### Validation Tool
-
-The validation tool we used in this pipeline is `PipeVal`. For more information about this tool check out: https://github.com/uclahs-cds/public-tool-PipeVal.
 
 ---
 
