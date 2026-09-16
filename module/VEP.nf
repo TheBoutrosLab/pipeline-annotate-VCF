@@ -52,7 +52,7 @@ process annotate_VCF_VEP {
 
 process filter_annotation_VEP {
     container params.docker_image_VEP
-    containerOptions "--e HOME=/home/\${USER} ${params.container_mount_flag} ${params.vep_cache}:/home/\${USER}/.vep"
+    containerOptions "--env HOME=/home/\${USER} ${params.container_mount_flag} ${params.vep_cache}:/home/\${USER}/.vep"
 
     publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.tsv",
