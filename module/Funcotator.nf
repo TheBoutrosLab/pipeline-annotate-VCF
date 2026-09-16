@@ -17,8 +17,8 @@ process run_Funcotator_GATK {
     path Funcotator_data_source
 
     output:
-    path("*.vcf"), emit: vcf optional true
-    path("*.maf"), emit: maf optional true
+    path("*.vcf"), emit: vcf, optional: true
+    path("*.maf"), emit: maf, optional: true
 
     script:
     output_filename = generate_standard_filename("Funcotator-${params.GATK_version}",
