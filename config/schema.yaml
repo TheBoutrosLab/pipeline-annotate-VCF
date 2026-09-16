@@ -91,7 +91,7 @@ Funcotator_extra_options:
 vep_cache:
   type: 'Path'
   mode: 'r'
-  required: false
+  required: true
   help: 'VEP cache for all transcript models, regulatory features and variant data for a species. See here: https://useast.ensembl.org/info/docs/tools/vep/script/vep_cache.html'
 chromosomes:
   type: 'String'
