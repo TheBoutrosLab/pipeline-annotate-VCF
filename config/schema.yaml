@@ -75,6 +75,9 @@ Funcotator_output_format:
   type: 'String'
   required: true
   default: 'VCF'
+  choices:
+    - VCF
+    - MAF
 Funcotator_b37_to_hg19_conversion:
   type: 'Bool'
   required: true
