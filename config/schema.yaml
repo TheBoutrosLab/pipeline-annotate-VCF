@@ -62,7 +62,7 @@ skip_SnpEff:
   required: true
   default: false
   help: 'enable to skip SnpEff'
-reference:
+reference_fasta:
   type: 'Path'
   mode: 'r'
   required: true
