@@ -55,7 +55,7 @@ process filter_annotation_VEP {
     containerOptions "--env HOME=/home/\${USER} ${params.container_mount_flag} ${params.vep_cache}:/home/\${USER}/.vep"
 
     publishDir path: "${META.workflow_output_dir}/output",
-        pattern: "*.tsv",
+        pattern: "*.txt",
         mode: "copy"
     ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" }
 

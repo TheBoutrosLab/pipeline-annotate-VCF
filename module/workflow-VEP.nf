@@ -43,9 +43,9 @@ workflow workflow_VEP {
         META.combine(filter_annotation_VEP.out.filtered_tsv)
             .map{ f_out -> [
                 f_out[0] + [
-                    "output_dir": "${f_out[0].output_dir_base}/output",
+                    "output_dir": "${f_out[0].workflow_output_dir}/output",
                     "checksum_alg": "sha512",
-                    "docker_image": params.docker_image_valdate,
+                    "docker_image": params.docker_image_validate,
                     "log_output_dir": "${f_out[0].log_output_dir}/process-log/${f_out[0].log_dir_prefix}"
                 ],
                 f_out[1]

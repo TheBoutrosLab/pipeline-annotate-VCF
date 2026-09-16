@@ -2,10 +2,9 @@ include { generate_standard_filename } from '../external/pipeline-Nextflow-modul
 
 process annotate_VCF_SnpEff {
     container params.docker_image_SnpEff
-    publishDir path: "${META.workflow_output_dir}/intermediate/${task.process.replace(':','/')}",
+    publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.vcf.gz",
-        mode: "copy",
-        enabled: params.save_intermediate_files
+        mode: "copy"
     publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.{html,txt}",
         mode: "copy"
@@ -41,10 +40,9 @@ process annotate_VCF_SnpEff {
 
 process annotate_VCF_SnpSift {
     container params.docker_image_SnpEff
-    publishDir path: "${META.workflow_output_dir}/intermediate/${task.process.replace(':','/')}",
+    publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.vcf.gz",
-        mode: "copy",
-        enabled: params.save_intermediate_files
+        mode: "copy"
     ext log_dir: { "${META.log_dir_prefix}-${database_names_string}/${task.process.split(':')[-1]}" }
 
     input:

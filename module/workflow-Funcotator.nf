@@ -53,7 +53,7 @@ workflow workflow_Funcotator {
         META.combine(compress_index_VCF.out.index_out.map{ indexed -> [indexed[1], indexed[2]] }.flatten())
             .map{ c_out -> [
                 c_out[0] + [
-                    "output_dir": "${c_out[0].output_dir_base}/output",
+                    "output_dir": "${c_out[0].workflow_output_dir}/output",
                     "checksum_alg": "sha512",
                     "docker_image": params.docker_image_validate,
                     "log_output_dir": "${c_out[0].log_output_dir}/process-log/${c_out[0].log_dir_prefix}"
