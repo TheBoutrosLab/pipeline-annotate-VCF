@@ -9,7 +9,7 @@ Docker Images:
 VEP Options:
 - VEP cache: ${params.vep_cache}
 - genome assembly version: ${params.genome_assembly_version}
-- genome reference version: ${params.genome_reference_version}
+- genome reference version: ${params.genome_version}
 - genome FASTA: ${params.genome_fasta}
 - anntoation GTF: ${params.annotation_gtf}
 - chromosomes: ${params.chromosomes}

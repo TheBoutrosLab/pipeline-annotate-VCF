@@ -23,9 +23,9 @@ workflow workflow_Funcotator {
     run_Funcotator_GATK(
         META,
         input_ch_sample.map{ sample -> [sample.vcf, sample.index] },
-        params.reference,
-        params.reference_index,
-        params.reference_dict,
+        params.reference_fasta,
+        params.reference_fasta_fai,
+        params.reference_fasta_dict,
         params.Funcotator_data_source
     )
 

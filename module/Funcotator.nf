@@ -33,7 +33,7 @@ process run_Funcotator_GATK {
     set -euo pipefail
     gatk --java-options \"-Xmx${(task.memory - params.command_mem_diff).getMega()}m\" Funcotator \
         --variant ${vcf} \
-        --reference ${params.reference} \
+        --reference ${reference} \
         --ref-version ${params.genome_version} \
         --data-sources-path ${params.Funcotator_data_source} \
         --output ${output_filename}.${params.Funcotator_output_format.toLowerCase()} \

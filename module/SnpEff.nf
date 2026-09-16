@@ -12,7 +12,7 @@ process annotate_VCF_SnpEff {
     ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" }
 
     input:
-    META
+    val META
     tuple path(vcf), path(vcf_index)
     path SnpEff_data_dir
 
@@ -29,8 +29,7 @@ process annotate_VCF_SnpEff {
 
     """
     set -euo pipefail
-    java \"-Xmx${(task.memory - params.command_mem_diff).getMega()}m\" \
-        -jar /usr/local/share/snpeff-${params.SnpEff_version}-0/snpEff.jar \
+    snpEff -Xmx${(task.memory - params.command_mem_diff).getMega()}m \
         ${download} \
         -dataDir ${params.SnpEff_data_dir} \
         ${params.genome_version} \
@@ -83,8 +82,7 @@ process annotate_VCF_SnpSift {
     annotate_database_list.eachWithIndex { database, index ->
         def output_file = intermediate_file_list[index]
         script_content += """
-            java \"-Xmx${(task.memory - params.command_mem_diff).getMega()}m\" \
-            -jar /usr/local/share/snpsift-${params.SnpEff_version}-0/SnpSift.jar annotate \
+            SnpSift -Xmx${(task.memory - params.command_mem_diff).getMega()}m annotate \
             ${database} \
             ${input_file} \
             | bgzip > ${output_file}
