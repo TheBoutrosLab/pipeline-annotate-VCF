@@ -1,0 +1,133 @@
+---
+dataset_id:
+  type: 'String'
+  required: true
+  help: 'Dataset identifier'
+genome_version:
+  type: 'String'
+  required: true
+  default: 'hg38'
+  help: 'Genome version used for SnpEff Database'
+algorithm:
+  type: 'List'
+  required: true
+  help: 'List of Annotation Algorithms to apply'
+  default:
+    - SnpEff
+    - Funcotator
+    - VEP
+  choices:
+    - SnpEff
+    - Funcotator
+    - VEP
+save_intermediate_files:
+  type: 'Bool'
+  required: true
+  default: false
+  help: 'enable to store intermediate files'
+output_dir:
+  type: 'Path'
+  mode: 'w'
+  required: true
+  help: 'absolute path to directory to store output'
+skip_normalization:
+  type: 'Bool'
+  required: true
+  default: false
+  help: 'enable to skip vcf normalization process'
+bcftools_view_options:
+  type: 'String'
+  required: false
+  default: ''
+  allow_empty: true
+bcftools_norm_options:
+  type: 'String'
+  required: false
+  default: ''
+  allow_empty: true
+SnpEff_data_dir:
+  type: 'Path'
+  mode: 'r'
+  required: true
+SnpEff_download:
+  type: 'Bool'
+  required: true
+  default: false
+SnpSift_annotate_database:
+  type: 'ReadableList'
+  required: true
+  help: 'SnpSift Annotation Databases'
+skip_SnpEff:
+  type: 'Bool'
+  required: true
+  default: false
+  help: 'enable to skip SnpEff'
+reference_fasta:
+  type: 'Path'
+  mode: 'r'
+  required: true
+  help: 'reference for Funcotator'
+Funcotator_data_source:
+  type: 'Path'
+  mode: 'r'
+  required: true
+Funcotator_output_format:
+  type: 'String'
+  required: true
+  default: 'VCF'
+  choices:
+    - VCF
+    - MAF
+Funcotator_b37_to_hg19_conversion:
+  type: 'Bool'
+  required: true
+  default: false
+  help: 'enable to use option --force-b37-to-hg19-reference-contig-conversion'
+Funcotator_extra_options:
+  type: 'String'
+  required: false
+  default: ''
+  allow_empty: true
+vep_cache:
+  type: 'Path'
+  mode: 'r'
+  required: true
+  help: 'VEP cache for all transcript models, regulatory features and variant data for a species. See here: https://useast.ensembl.org/info/docs/tools/vep/script/vep_cache.html'
+chromosomes:
+  type: 'String'
+  required: false
+  default: 'chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY,chrM'
+  help: 'Chromosomes to annotate.'
+genome_assembly_version:
+  type: 'String'
+  required: false
+  default: 'GRCh38'
+  help: 'Genome assembly version. Used by VEP.'
+genome_annotation_version:
+  type: 'String'
+  required: false
+  help: 'Genome annotation version. Used by VEP.'
+genome_fasta:
+  type: 'Path'
+  mode: 'r'
+  required: false
+  help: 'Genome assembly FASTA.'
+annotation_gtf:
+  type: 'Path'
+  mode: 'r'
+  required: false
+  help: 'Genome annotation GTF.'
+sample_id:
+  type: 'String'
+  required: true
+  help: 'sample id supplied from input yaml'
+input:
+  type: 'Namespace'
+  required: true
+  help: 'Input sample'
+  elements:
+    vcf:
+      type: 'Path'
+      mode: 'r'
+      required: true
+      help: 'input dataset supplied by input yaml'
