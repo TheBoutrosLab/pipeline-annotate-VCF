@@ -50,12 +50,12 @@ workflow workflow_Funcotator {
     )
 
     generate_checksum_PipeVal(
-        META.combine(compress_index_VCF.out.index_out.flatten())
+        META.combine(compress_index_VCF.out.index_out.map{ indexed -> [indexed[1], indexed[2]] }.flatten())
             .map{ c_out -> [
                 c_out[0] + [
                     "output_dir": "${c_out[0].output_dir_base}/output",
                     "checksum_alg": "sha512",
-                    "docker_image": params.docker_image_valdate,
+                    "docker_image": params.docker_image_validate,
                     "log_output_dir": "${c_out[0].log_output_dir}/process-log/${c_out[0].log_dir_prefix}"
                 ],
                 c_out[1]
