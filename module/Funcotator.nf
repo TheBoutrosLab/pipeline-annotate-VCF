@@ -35,7 +35,7 @@ process run_Funcotator_GATK {
         --variant ${vcf} \
         --reference ${reference} \
         --ref-version ${params.genome_version} \
-        --data-sources-path ${params.Funcotator_data_source} \
+        --data-sources-path ${Funcotator_data_source} \
         --output ${output_filename}.${params.Funcotator_output_format.toLowerCase()} \
         --output-file-format ${params.Funcotator_output_format} \
         $arg_conversion \
