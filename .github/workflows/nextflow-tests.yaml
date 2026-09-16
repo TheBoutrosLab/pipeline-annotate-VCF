@@ -3,7 +3,7 @@ name: Nextflow config tests
 
 on:
   workflow_run:
-    workflows: [Trigger Tests]
+    workflows: [Trigger tests]
     types:
       - completed
 
