@@ -30,7 +30,7 @@ process annotate_VCF_SnpEff {
     set -euo pipefail
     snpEff -Xmx${(task.memory - params.command_mem_diff).getMega()}m \
         ${download} \
-        -dataDir ${SnpEff_data_dir} \
+        -dataDir ${params.SnpEff_data_dir} \
         ${params.genome_version} \
         ${vcf} \
         -s ${output_filename}.html \
