@@ -24,7 +24,7 @@
 
 ## Overview
 
-Pipeline-annotate-VCF is an annotation pipeline that contains multiple tools to annotate VCFs. The input of pipeline-annotate-VCF takes properly fomated VCFs, such as WEX/WGS samples processed by [pipeline-call-sSNV](https://github.com/theboutroslab/pipeline-call-sSNV). Tools include SnpEff/SnpSift and GATK Funcotator now, and will include VEP in a future release.
+Pipeline-annotate-VCF is an annotation pipeline that contains multiple tools to annotate VCFs. The input of pipeline-annotate-VCF takes properly formatted VCFs, such as WEX/WGS samples processed by [pipeline-call-sSNV](https://github.com/theboutroslab/pipeline-call-sSNV). Tools include SnpEff/SnpSift, GATK Funcotator, and VEP.
 
 ---
 
