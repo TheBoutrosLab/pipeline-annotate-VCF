@@ -19,11 +19,11 @@ log.info """\
             algorithm: ${params.algorithm}
             input.vcf: ${params.input.vcf}
             genome_version: ${params.genome_version}
-            reference: ${params.reference}
+            reference: ${params.reference_fasta}
 
         - output:
             output_dir: ${params.output_dir_base}
-            output_log_dir: ${params.output_log_dir}
+            output_log_dir: ${params.log_output_dir}
 
         - other options:
             save_intermediate_files: ${params.save_intermediate_files}
@@ -92,9 +92,9 @@ workflow {
     /**
     *   Normalize VCF
     */
-    bcftools_meta = meta_base.map{ base_m ->
+    bcftools_meta = base_meta.map{ base_m ->
         base_m + [
-            "workflow_output_dir": "${params.output_dir_base}/BCFtools-${params.bcftools_version}",
+            "workflow_output_dir": "${params.output_dir_base}/BCFtools-${params.BCFtools_version}",
             "log_dir_prefix": "BCFtools-${params.BCFtools_version}"
         ]
     }
@@ -129,9 +129,9 @@ workflow {
     *   SnpEff
     */
     if ('SnpEff' in params.algorithm) {
-        snpeff_meta = meta_base.map{ base_m ->
+        snpeff_meta = base_meta.map{ base_m ->
             base_m + [
-                "workflow_output_dir": "${params.output_dir_base}/SnpEff-${SnpEff_version}",
+                "workflow_output_dir": "${params.output_dir_base}/SnpEff-${params.SnpEff_version}",
                 "log_dir_prefix": "SnpEff-${params.SnpEff_version}"
             ]
         }
@@ -146,9 +146,9 @@ workflow {
     *   Funcotator
     */
     if ('Funcotator' in params.algorithm) {
-        funcotator_meta = meta_base.map{ base_m ->
+        funcotator_meta = base_meta.map{ base_m ->
             base_m + [
-                "workflow_output_dir": "${params.output_dir_base}/Funcotator-${GATK_version}",
+                "workflow_output_dir": "${params.output_dir_base}/Funcotator-${params.GATK_version}",
                 "log_dir_prefix": "Funcotator-${params.GATK_version}"
             ]
         }
@@ -163,9 +163,9 @@ workflow {
     *   VEP
     */
     if ('VEP' in params.algorithm) {
-        vep_meta = meta_base.map{ base_m ->
+        vep_meta = base_meta.map{ base_m ->
             base_m + [
-                "workflow_output_dir": "${params.output_dir_base}/VEP-${VEP_version}",
+                "workflow_output_dir": "${params.output_dir_base}/VEP-${params.VEP_version}",
                 "log_dir_prefix": "VEP-${params.VEP_version}"
             ]
         }
