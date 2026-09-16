@@ -19,7 +19,7 @@ database "Funcotator\nDatasource" as FuncotatorDB
 rectangle "annotate_VCF_VEP" as VEP1
 database "VEP\nDatasource" as VEPDB
 rectangle "filter_VCF_VEP" as VEP2
-rectangle "VEP-{VEP_version}_{dataset_id}_{sample_id}_filtered.txt.gz" as VEPOutput #LightGoldenRodYellow
+rectangle "VEP-{VEP_version}_{dataset_id}_{sample_id}_filtered.txt" as VEPOutput #LightGoldenRodYellow
 
 InputVCF --> Validation
 Validation --> AnnotateSnpEff

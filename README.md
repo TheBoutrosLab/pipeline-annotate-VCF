@@ -131,7 +131,7 @@ Profiles can be selected to control which containerization system will be used. 
 |`{tool-version}_{dataset_id}_{sample_id}.vcf.gz`| `.vcf.gz` | Final VCF file |
 |`SnpEff-{version}_{dataset_id}_{sample_id}_summary.html` | `.html` | SnpEff HTML file (SnpEff)|
 |`SnpEff-{version}_{dataset_id}_{sample_id}_genes.txt` | `.txt` | SnpEff gene list (SnpEff)|
-|`VEP-{version}_{dataset_id}_{sample_id}.txt.gz`| `.txt.gz` | VEP annotation results |
+|`VEP-{version}_{dataset_id}_{sample_id}.txt`| `.txt` | VEP annotation results |
 | `report.html`, `timeline.html`, `trace.txt`  | `.html` & `.txt` | Nextflow logs  |
 
 ---
