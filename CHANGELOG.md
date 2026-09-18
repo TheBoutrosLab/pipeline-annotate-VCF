@@ -8,6 +8,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-09-18
+
 ### Changed
 
 - Call SnpEff and SnpSift JARs directly rather than with wrapper
@@ -21,4 +23,5 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Add `VEP`
 
 [1.0.0]: https://github.com/TheBoutrosLab/pipeline-annotate-VCF/releases/tag/v1.0.0
-[unreleased]: https://github.com/TheBoutrosLab/pipeline-annotate-VCF/compare/v1.0.0...HEAD
+[1.1.0]: https://github.com/TheBoutrosLab/pipeline-annotate-VCF/compare/v1.0.0...v1.1.0
+[unreleased]: https://github.com/TheBoutrosLab/pipeline-annotate-VCF/compare/v1.1.0...HEAD
