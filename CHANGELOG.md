@@ -8,6 +8,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+### Changed
+
+- Call SnpEff and SnpSift JARs directly rather than with wrapper
+
 ## [1.0.0] - 2026-09-16
 
 ### Added
