@@ -6,7 +6,8 @@ process annotate_VCF_VEP {
 
     publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.tsv",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
     ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" }
 
     input:
@@ -56,7 +57,8 @@ process filter_annotation_VEP {
 
     publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.txt",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
     ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" }
 
     input:

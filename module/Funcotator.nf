@@ -5,7 +5,8 @@ process run_Funcotator_GATK {
     publishDir path: "${META.workflow_output_dir}/intermediate/${task.process.replace(':','/')}",
         pattern:"*.{vcf,maf}",
         mode: "copy",
-        enabled: params.save_intermediate_files
+        enabled: params.save_intermediate_files,
+        failOnError: false
     ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" }
 
     input:

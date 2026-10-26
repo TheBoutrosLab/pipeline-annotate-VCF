@@ -4,10 +4,12 @@ process annotate_VCF_SnpEff {
     container params.docker_image_SnpEff
     publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.vcf.gz",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
     publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.{html,txt}",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
     ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" }
 
     input:
@@ -44,7 +46,8 @@ process annotate_VCF_SnpSift {
     container params.docker_image_SnpEff
     publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.vcf.gz",
-        mode: "copy"
+        mode: "copy",
+        failOnError: false
     ext log_dir: { "${META.log_dir_prefix}-${database_names_string}/${task.process.split(':')[-1]}" }
 
     input:

@@ -1,5 +1,3 @@
-nextflow.enable.dsl=2
-
 log.info """\
 ====================================
                V E P

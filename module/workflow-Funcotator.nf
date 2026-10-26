@@ -1,5 +1,3 @@
-nextflow.enable.dsl=2
-
 log.info """\
 ====================================
       F U N C O T A T O R
