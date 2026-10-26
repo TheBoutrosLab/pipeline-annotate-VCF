@@ -163,7 +163,8 @@ workflow {
         vep_meta = base_meta.map{ base_m ->
             base_m + [
                 "workflow_output_dir": "${params.output_dir_base}/VEP-${params.VEP_version}",
-                "log_dir_prefix": "VEP-${params.VEP_version}"
+                "log_dir_prefix": "VEP-${params.VEP_version}",
+                "vep_cache": params.vep_cache
             ]
         }
 

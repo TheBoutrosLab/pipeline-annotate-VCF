@@ -2,13 +2,13 @@ include { generate_standard_filename } from "${moduleDir}/../external/pipeline-N
 
 process annotate_VCF_VEP {
     container params.docker_image_VEP
-    containerOptions "--env HOME=/home/\${USER} ${params.container_mount_flag} ${params.vep_cache}:/home/\${USER}/.vep"
 
     publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.tsv",
         mode: "copy",
         failOnError: false
-    ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" }
+    ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" },
+        containerOptions: { "--env HOME=/home/\${USER} ${params.container_mount_flag} ${META.vep_cache}:/home/\${USER}/.vep" }
 
     input:
     val META
@@ -53,13 +53,13 @@ process annotate_VCF_VEP {
 
 process filter_annotation_VEP {
     container params.docker_image_VEP
-    containerOptions "--env HOME=/home/\${USER} ${params.container_mount_flag} ${params.vep_cache}:/home/\${USER}/.vep"
 
     publishDir path: "${META.workflow_output_dir}/output",
         pattern: "*.txt",
         mode: "copy",
         failOnError: false
-    ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" }
+    ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" },
+        containerOptions: { "--env HOME=/home/\${USER} ${params.container_mount_flag} ${META.vep_cache}:/home/\${USER}/.vep" }
 
     input:
     val META
