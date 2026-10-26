@@ -1,8 +1,5 @@
 #!/usr/bin/env nextflow
 
-nextflow.enable.dsl=2
-
-
 log.info """\
         =========================
          A N N O T A T E - V C F
@@ -48,7 +45,7 @@ include { workflow_VEP } from './module/workflow-VEP.nf'
 
 // Main workflow here
 workflow {
-    Channel.from( params.input.vcf )
+    Channel.of( params.input.vcf )
         .map{ raw_param_vcf ->
             [
                 "vcf": raw_param_vcf,
