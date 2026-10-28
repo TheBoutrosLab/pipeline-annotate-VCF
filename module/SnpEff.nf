@@ -48,7 +48,10 @@ process annotate_VCF_SnpSift {
         pattern: "*.vcf.gz",
         mode: "copy",
         failOnError: false
-    ext log_dir: { "${META.log_dir_prefix}-${database_names_string}/${task.process.split(':')[-1]}" }
+    ext log_dir: {
+        def database_names_string = annotate_database_list.collect { database -> file(database).baseName.split(/\./)[0] }.join('_')
+        "${META.log_dir_prefix}-${database_names_string}/${task.process.split(':')[-1]}"
+        }
 
     input:
     val META
