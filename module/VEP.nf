@@ -8,7 +8,7 @@ process annotate_VCF_VEP {
         mode: "copy",
         failOnError: false
     ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" },
-        containerOptions: { "--env HOME=/home/\${USER} ${params.container_mount_flag} ${META.vep_cache}:/home/\${USER}/.vep" }
+        containerOptions: { "--home /home/\${USER} ${params.container_mount_flag} ${META.vep_cache}:/home/\${USER}/.vep" }
 
     input:
     val META
@@ -59,7 +59,7 @@ process filter_annotation_VEP {
         mode: "copy",
         failOnError: false
     ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" },
-        containerOptions: { "--env HOME=/home/\${USER} ${params.container_mount_flag} ${META.vep_cache}:/home/\${USER}/.vep" }
+        containerOptions: { "--home /home/\${USER} ${params.container_mount_flag} ${META.vep_cache}:/home/\${USER}/.vep" }
 
     input:
     val META
