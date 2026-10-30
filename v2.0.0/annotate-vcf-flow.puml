@@ -1,0 +1,42 @@
+@startuml
+
+skinparam database {
+    BackgroundColor LightSteelBlue
+}
+
+rectangle "Input VCF" as InputVCF #Wheat
+rectangle "run_validate_PipeVal" as Validation
+rectangle "annotate_VCF_SnpEff" as AnnotateSnpEff
+rectangle "SnpEff-{SnpEff_version}_{dataset_id}_{sample_id}.vcf.gz" as SnpEffOutput #LightGoldenRodYellow
+database "SnpEff Database" as SnpEffDB
+rectangle "annotate_VCF_SnpSift" as AnnotateSnpSift
+rectangle "SnpSift-{SnpSift_version}_{dataset_id}_{sample_id}_{database}.vcf.gz" as SnpSiftOutput #LightGoldenRodYellow
+database "SnpSift\nDatabase" as DatabaseVCF
+
+rectangle "run_Funcotator_GATK" as Funcotator
+rectangle "Funcotator-{Funcotator_version}_{dataset_id}_{sample_id}.vcf.gz" as FuncotatorOutput #LightGoldenRodYellow
+database "Funcotator\nDatasource" as FuncotatorDB
+
+rectangle "annotate_VCF_VEP" as VEP1
+database "VEP\nDatasource" as VEPDB
+rectangle "filter_VCF_VEP" as VEP2
+rectangle "VEP-{VEP_version}_{dataset_id}_{sample_id}_filtered.txt" as VEPOutput #LightGoldenRodYellow
+
+InputVCF --> Validation
+Validation --> AnnotateSnpEff
+AnnotateSnpEff --> SnpEffOutput
+SnpEffDB -l-> AnnotateSnpEff
+SnpEffOutput --> AnnotateSnpSift
+AnnotateSnpSift --> SnpSiftOutput
+DatabaseVCF -l-> AnnotateSnpSift
+
+Validation --> Funcotator
+FuncotatorDB -l-> Funcotator
+Funcotator --> FuncotatorOutput
+
+Validation --> VEP1
+VEPDB -l-> VEP1
+VEP1 --> VEP2
+VEP2 --> VEPOutput
+
+@enduml

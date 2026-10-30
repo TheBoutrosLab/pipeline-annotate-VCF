@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="581px" preserveAspectRatio="none" style="width:1306px;height:581px;background:#FFFFFF;" version="1.1" viewBox="0 0 1306 581" width="1306px" zoomAndPan="magnify"><defs/><g><!--MD5=[ca647b52d795f464aa3af055532d7796]
+entity InputVCF--><g id="elem_InputVCF"><rect fill="#F5DEB3" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="86" x="509.5" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66" x="519.5" y="29.9951">Input VCF</text></g><!--MD5=[84a8adf19e05bbe4f686722566ec946a]
+entity Validation--><g id="elem_Validation"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="159" x="473" y="103"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="139" x="483" y="125.9951">run_validate_PipeVal</text></g><!--MD5=[ce567dc2579e6d8d23786101c2aaaa5f]
+entity AnnotateSnpEff--><g id="elem_AnnotateSnpEff"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="167" x="882" y="212"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="147" x="892" y="234.9951">annotate_VCF_SnpEff</text></g><!--MD5=[f1384fb746f859ebee306376aeb82080]
+entity SnpEffOutput--><g id="elem_SnpEffOutput"><rect fill="#FAFAD2" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="422" x="829.5" y="321"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="402" x="839.5" y="343.9951">SnpEff-{SnpEff_version}_{dataset_id}_{sample_id}.vcf.gz</text></g><!--MD5=[128c66dc2a19733110072bd14f6b0e10]
+entity SnpEffDB--><g id="elem_SnpEffDB"><path d="M1084.5,217.5 C1084.5,207.5 1151.5,207.5 1151.5,207.5 C1151.5,207.5 1218.5,207.5 1218.5,217.5 L1218.5,242.7969 C1218.5,252.7969 1151.5,252.7969 1151.5,252.7969 C1151.5,252.7969 1084.5,252.7969 1084.5,242.7969 L1084.5,217.5 " fill="#B0C4DE" style="stroke:#181818;stroke-width:0.5;"/><path d="M1084.5,217.5 C1084.5,227.5 1151.5,227.5 1151.5,227.5 C1151.5,227.5 1218.5,227.5 1218.5,217.5 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="114" x="1094.5" y="244.4951">SnpEff Database</text></g><!--MD5=[b795d652e0f8727590422ffd21a9ea2a]
+entity AnnotateSnpSift--><g id="elem_AnnotateSnpSift"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="171" x="955" y="430"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="151" x="965" y="452.9951">annotate_VCF_SnpSift</text></g><!--MD5=[6c9408df576c0236b60c00fd92b5fd8d]
+entity SnpSiftOutput--><g id="elem_SnpSiftOutput"><rect fill="#FAFAD2" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="519" x="781" y="539"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="499" x="791" y="561.9951">SnpSift-{SnpSift_version}_{dataset_id}_{sample_id}_{database}.vcf.gz</text></g><!--MD5=[a9d7611e94ec155bb0c0f07732d3beca]
+entity DatabaseVCF--><g id="elem_DatabaseVCF"><path d="M1161.5,427 C1161.5,417 1204.5,417 1204.5,417 C1204.5,417 1247.5,417 1247.5,427 L1247.5,468.5938 C1247.5,478.5938 1204.5,478.5938 1204.5,478.5938 C1204.5,478.5938 1161.5,478.5938 1161.5,468.5938 L1161.5,427 " fill="#B0C4DE" style="stroke:#181818;stroke-width:0.5;"/><path d="M1161.5,427 C1161.5,437 1204.5,437 1204.5,437 C1204.5,437 1247.5,437 1247.5,427 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="48" x="1171.5" y="453.9951">SnpSift</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66" x="1171.5" y="470.292">Database</text></g><!--MD5=[3690b825134bc2696f038e03e06fc154]
+entity Funcotator--><g id="elem_Funcotator"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="170" x="467.5" y="212"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="150" x="477.5" y="234.9951">run_Funcotator_GATK</text></g><!--MD5=[1e8c07bcc6a08e98f64a1bf31a76aeb7]
+entity FuncotatorOutput--><g id="elem_FuncotatorOutput"><rect fill="#FAFAD2" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="484" x="310.5" y="321"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="464" x="320.5" y="343.9951">Funcotator-{Funcotator_version}_{dataset_id}_{sample_id}.vcf.gz</text></g><!--MD5=[bc1d4ef7433f456cc37d4f3fb3808ac2]
+entity FuncotatorDB--><g id="elem_FuncotatorDB"><path d="M672.5,209 C672.5,199 722.5,199 722.5,199 C722.5,199 772.5,199 772.5,209 L772.5,250.5938 C772.5,260.5938 722.5,260.5938 722.5,260.5938 C722.5,260.5938 672.5,260.5938 672.5,250.5938 L672.5,209 " fill="#B0C4DE" style="stroke:#181818;stroke-width:0.5;"/><path d="M672.5,209 C672.5,219 722.5,219 722.5,219 C722.5,219 772.5,219 772.5,209 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="75" x="682.5" y="235.9951">Funcotator</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80" x="682.5" y="252.292">Datasource</text></g><!--MD5=[04cd57afba22e71379dad5e4f57781be]
+entity VEP1--><g id="elem_VEP1"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="150" x="144.5" y="212"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="130" x="154.5" y="234.9951">annotate_VCF_VEP</text></g><!--MD5=[81d19d3153c23bbc07e17ad8bc54229f]
+entity VEPDB--><g id="elem_VEPDB"><path d="M329.5,209 C329.5,199 379.5,199 379.5,199 C379.5,199 429.5,199 429.5,209 L429.5,250.5938 C429.5,260.5938 379.5,260.5938 379.5,260.5938 C379.5,260.5938 329.5,260.5938 329.5,250.5938 L329.5,209 " fill="#B0C4DE" style="stroke:#181818;stroke-width:0.5;"/><path d="M329.5,209 C329.5,219 379.5,219 379.5,219 C379.5,219 429.5,219 429.5,209 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="27" x="339.5" y="235.9951">VEP</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80" x="339.5" y="252.292">Datasource</text></g><!--MD5=[38fe0523e1904eb1d87af5a7be00954b]
+entity VEP2--><g id="elem_VEP2"><rect fill="#F1F1F1" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="117" x="158" y="321"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="97" x="168" y="343.9951">filter_VCF_VEP</text></g><!--MD5=[b16b131700c92f6e3da76c5a76a5a20b]
+entity VEPOutput--><g id="elem_VEPOutput"><rect fill="#FAFAD2" height="36.2969" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="419" x="7" y="430"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="399" x="17" y="452.9951">VEP-{VEP_version}_{dataset_id}_{sample_id}_filtered.txt</text></g><!--MD5=[e3118855868d737a63384620096861f5]
+link InputVCF to Validation--><g id="link_InputVCF_Validation"><path d="M552.5,43.24 C552.5,58.48 552.5,80.81 552.5,97.46 " fill="none" id="InputVCF-to-Validation" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="552.5,102.87,556.5,93.87,552.5,97.87,548.5,93.87,552.5,102.87" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[eaa20d8a35081575dfd788a5d3f42006]
+link Validation to AnnotateSnpEff--><g id="link_Validation_AnnotateSnpEff"><path d="M618.4,139.07 C693.94,158.64 817.3,190.6 894.8,210.68 " fill="none" id="Validation-to-AnnotateSnpEff" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="899.84,211.99,892.1338,205.857,895.0004,210.7337,890.1237,213.6003,899.84,211.99" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[962db8bab34046105c256eba8da78421]
+link AnnotateSnpEff to SnpEffOutput--><g id="link_AnnotateSnpEff_SnpEffOutput"><path d="M977.55,248.19 C990.62,266.83 1011.49,296.61 1025.58,316.72 " fill="none" id="AnnotateSnpEff-to-SnpEffOutput" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="1028.48,320.85,1026.5776,311.1866,1025.605,316.7592,1020.0324,315.7866,1028.48,320.85" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[da0a6e539169b03d66407dbc2789fadc]
+reverse link AnnotateSnpEff to SnpEffDB--><g id="link_AnnotateSnpEff_SnpEffDB"><path d="M1054.28,230 C1064.28,230 1074.27,230 1084.27,230 " fill="none" id="AnnotateSnpEff-backto-SnpEffDB" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="1049.05,230,1058.05,234,1054.05,230,1058.05,226,1049.05,230" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[16e927548cf54826ab27b9d3468eab6a]
+link SnpEffOutput to AnnotateSnpSift--><g id="link_SnpEffOutput_AnnotateSnpSift"><path d="M1040.5,357.19 C1040.5,375.52 1040.5,404.62 1040.5,424.7 " fill="none" id="SnpEffOutput-to-AnnotateSnpSift" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="1040.5,429.85,1044.5,420.85,1040.5,424.85,1036.5,420.85,1040.5,429.85" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[232bacfc8bc609f299c125a0c16a396b]
+link AnnotateSnpSift to SnpSiftOutput--><g id="link_AnnotateSnpSift_SnpSiftOutput"><path d="M1040.5,466.19 C1040.5,484.52 1040.5,513.62 1040.5,533.7 " fill="none" id="AnnotateSnpSift-to-SnpSiftOutput" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="1040.5,538.85,1044.5,529.85,1040.5,533.85,1036.5,529.85,1040.5,538.85" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[b43b62e09020e701f699ec3e4566c55d]
+reverse link AnnotateSnpSift to DatabaseVCF--><g id="link_AnnotateSnpSift_DatabaseVCF"><path d="M1131.26,448 C1141.26,448 1151.27,448 1161.28,448 " fill="none" id="AnnotateSnpSift-backto-DatabaseVCF" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="1126.02,448,1135.02,452,1131.02,448,1135.02,444,1126.02,448" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[c20ae8857c44688f39a3209d227536f4]
+link Validation to Funcotator--><g id="link_Validation_Funcotator"><path d="M552.5,139.19 C552.5,157.52 552.5,186.62 552.5,206.7 " fill="none" id="Validation-to-Funcotator" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="552.5,211.85,556.5,202.85,552.5,206.85,548.5,202.85,552.5,211.85" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[1ea64a216f75d27a20efc096346c8fd4]
+reverse link Funcotator to FuncotatorDB--><g id="link_Funcotator_FuncotatorDB"><path d="M642.68,230 C652.57,230 662.47,230 672.36,230 " fill="none" id="Funcotator-backto-FuncotatorDB" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="637.5,230,646.5,234,642.5,230,646.5,226,637.5,230" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[ba65c940b465fe4e3e2b2b5b29321cd7]
+link Funcotator to FuncotatorOutput--><g id="link_Funcotator_FuncotatorOutput"><path d="M552.5,248.19 C552.5,266.52 552.5,295.62 552.5,315.7 " fill="none" id="Funcotator-to-FuncotatorOutput" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="552.5,320.85,556.5,311.85,552.5,315.85,548.5,311.85,552.5,320.85" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[da4aec24e593770e2b6925ce3fbda61f]
+link Validation to VEP1--><g id="link_Validation_VEP1"><path d="M498.87,139.03 C450.01,154.58 375.87,178.22 311.5,199 C300.17,202.66 288.06,206.59 276.47,210.36 " fill="none" id="Validation-to-VEP1" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="271.54,211.97,281.3387,212.963,276.2905,210.4103,278.8432,205.3622,271.54,211.97" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[28977fe4a6b16651e4e77b0c2afcbcb1]
+reverse link VEP1 to VEPDB--><g id="link_VEP1_VEPDB"><path d="M299.68,230 C309.57,230 319.47,230 329.36,230 " fill="none" id="VEP1-backto-VEPDB" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="294.5,230,303.5,234,299.5,230,303.5,226,294.5,230" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[74106b707ee11913686db8d957530e65]
+link VEP1 to VEP2--><g id="link_VEP1_VEP2"><path d="M219.02,248.19 C218.5,266.52 217.69,295.62 217.13,315.7 " fill="none" id="VEP1-to-VEP2" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="216.98,320.85,221.2354,311.9679,217.1228,315.852,213.2387,311.7394,216.98,320.85" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[ebbb391d37b89c5ba6727e7c2918ef3e]
+link VEP2 to VEPOutput--><g id="link_VEP2_VEPOutput"><path d="M216.5,357.19 C216.5,375.52 216.5,404.62 216.5,424.7 " fill="none" id="VEP2-to-VEPOutput" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="216.5,429.85,220.5,420.85,216.5,424.85,212.5,420.85,216.5,429.85" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[368b0b3299e6a19f465782d293506134]
+@startuml
+
+skinparam database {
+    BackgroundColor LightSteelBlue
+}
+
+rectangle "Input VCF" as InputVCF #Wheat
+rectangle "run_validate_PipeVal" as Validation
+rectangle "annotate_VCF_SnpEff" as AnnotateSnpEff
+rectangle "SnpEff-{SnpEff_version}_{dataset_id}_{sample_id}.vcf.gz" as SnpEffOutput #LightGoldenRodYellow
+database "SnpEff Database" as SnpEffDB
+rectangle "annotate_VCF_SnpSift" as AnnotateSnpSift
+rectangle "SnpSift-{SnpSift_version}_{dataset_id}_{sample_id}_{database}.vcf.gz" as SnpSiftOutput #LightGoldenRodYellow
+database "SnpSift\nDatabase" as DatabaseVCF
+
+rectangle "run_Funcotator_GATK" as Funcotator
+rectangle "Funcotator-{Funcotator_version}_{dataset_id}_{sample_id}.vcf.gz" as FuncotatorOutput #LightGoldenRodYellow
+database "Funcotator\nDatasource" as FuncotatorDB
+
+rectangle "annotate_VCF_VEP" as VEP1
+database "VEP\nDatasource" as VEPDB
+rectangle "filter_VCF_VEP" as VEP2
+rectangle "VEP-{VEP_version}_{dataset_id}_{sample_id}_filtered.txt" as VEPOutput #LightGoldenRodYellow
+
+InputVCF - -> Validation
+Validation - -> AnnotateSnpEff
+AnnotateSnpEff - -> SnpEffOutput
+SnpEffDB -l-> AnnotateSnpEff
+SnpEffOutput - -> AnnotateSnpSift
+AnnotateSnpSift - -> SnpSiftOutput
+DatabaseVCF -l-> AnnotateSnpSift
+
+Validation - -> Funcotator
+FuncotatorDB -l-> Funcotator
+Funcotator - -> FuncotatorOutput
+
+Validation - -> VEP1
+VEPDB -l-> VEP1
+VEP1 - -> VEP2
+VEP2 - -> VEPOutput
+
+@enduml
+
+PlantUML version 1.2022.6(Tue Jun 21 17:34:49 GMT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
