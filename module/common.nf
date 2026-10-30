@@ -14,7 +14,8 @@ process normalize_VCF_BCFtools {
     container params.docker_image_BCFtools
     publishDir path: "${META.workflow_output_dir}/output",
                 mode: "copy",
-                pattern: "*.vcf.gz"
+                pattern: "*.vcf.gz",
+                failOnError: false
     ext log_dir: { "${META.log_dir_prefix}/${task.process.split(':')[-1]}" }
 
     input:

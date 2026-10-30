@@ -37,7 +37,7 @@ Pipeline-annotate-VCF is an annotation pipeline that contains multiple tools to 
 3. Run the pipeline with `nextflow run ...` through either local runs or through scheduler job.
 
 ### Requirements
-Currently supported Nextflow versions: `v23.04.2`
+Currently supported Nextflow versions: `25.10.5` (requires Java 17 or later)
 
 ---
 
