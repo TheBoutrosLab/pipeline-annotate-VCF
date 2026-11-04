@@ -15,11 +15,11 @@ process annotate_VCF_VEP {
     tuple path(vcf), path(vcf_index)
     path genome_fasta
     path genome_fasta_index
-    path annotation_gtf
-    path annotation_gtf_index
+    path annotation_gtf          // [] when params.VEP_custom_gtf is false
+    path annotation_gtf_index    // [] when params.VEP_custom_gtf is false
 
     output:
-    path output_file, emit: 'vep_tsv'
+    path output_file, emit: 'vep_output'
 
     script:
     output_filename = generate_standard_filename(
@@ -28,7 +28,14 @@ process annotate_VCF_VEP {
         params.sample_id,
         [:]
     )
-    output_file = "${output_filename}.tsv"
+    output_ext = params.VEP_output_format == 'vcf' ? 'vcf' : 'tsv'
+    output_file = "${output_filename}.${output_ext}"
+
+    arg_format = params.VEP_output_format == 'vcf' ? '--vcf' : ''
+    arg_restrict = params.VEP_restrict_output ? '--distance 0 --no_intergenic' : ''
+    arg_chr = params.chromosomes ? "--chr ${params.chromosomes}" : ''
+    arg_custom = params.VEP_custom_gtf ? "--custom ${annotation_gtf},${params.genome_annotation_version},gtf" : ''
+    arg_extra_options = "${params.VEP_extra_options}"
 
     """
     set -euo pipefail
@@ -40,14 +47,15 @@ process annotate_VCF_VEP {
         --no_stats \
         --fork ${task.cpus} \
         --buffer_size 10000 \
-        --distance 0 \
         --assembly ${params.genome_assembly_version} \
-        --no_intergenic \
-        --chr ${params.chromosomes} \
         -i ${vcf} \
         -o ${output_file} \
         --fasta ${genome_fasta} \
-        --custom ${annotation_gtf},${params.genome_annotation_version},gtf
+        $arg_format \
+        $arg_restrict \
+        $arg_chr \
+        $arg_custom \
+        $arg_extra_options
     """
 }
 
