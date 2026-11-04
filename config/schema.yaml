@@ -97,7 +97,8 @@ chromosomes:
   type: 'String'
   required: false
   default: 'chr1,chr2,chr3,chr4,chr5,chr6,chr7,chr8,chr9,chr10,chr11,chr12,chr13,chr14,chr15,chr16,chr17,chr18,chr19,chr20,chr21,chr22,chrX,chrY,chrM'
-  help: 'Chromosomes to annotate.'
+  allow_empty: true
+  help: 'Chromosomes to annotate. Leave empty to annotate all chromosomes (omits VEP --chr).'
 genome_assembly_version:
   type: 'String'
   required: false
@@ -117,6 +118,30 @@ annotation_gtf:
   mode: 'r'
   required: false
   help: 'Genome annotation GTF.'
+VEP_output_format:
+  type: 'String'
+  required: true
+  default: 'tab'
+  choices:
+    - tab
+    - vcf
+  help: 'VEP output format. vcf writes a bgzipped, tabix-indexed VCF with a CSQ INFO field.'
+VEP_custom_gtf:
+  type: 'Bool'
+  required: true
+  default: true
+  help: 'Annotate with --custom annotation_gtf and filter to its transcripts. Disable to use only the VEP cache.'
+VEP_restrict_output:
+  type: 'Bool'
+  required: true
+  default: true
+  help: 'Add --distance 0 --no_intergenic to the VEP command.'
+VEP_extra_options:
+  type: 'String'
+  required: false
+  default: ''
+  allow_empty: true
+  help: 'Extra options appended to the VEP command.'
 sample_id:
   type: 'String'
   required: true
