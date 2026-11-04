@@ -71,10 +71,10 @@ process filter_annotation_VEP {
 
     input:
     val META
-    path vep_tsv
+    path vep_output
 
     output:
-    path filtered_tsv, emit: 'filtered_tsv'
+    path filtered_output, emit: 'filtered_output'
 
     script:
     output_filename = generate_standard_filename(
@@ -83,12 +83,19 @@ process filter_annotation_VEP {
         params.sample_id,
         [additional_information: "filtered"]
     )
-    filtered_tsv = "${output_filename}.txt"
+    // VCF output is published after bgzip/tabix in workflow_VEP; tab output is published here as *.txt
+    // NOTE: filtering VCF output on the custom GTF source (`Source = ...`) has not been tested
+    output_ext = params.VEP_output_format == 'vcf' ? 'vcf' : 'txt'
+    filtered_output = "${output_filename}.${output_ext}"
+    arg_format = params.VEP_output_format == 'vcf' ? '--format vcf' : ''
     """
+    set -euo pipefail
+
     filter_vep \
         --force_overwrite \
-        -i ${vep_tsv} \
-        -o ${filtered_tsv} \
+        $arg_format \
+        -i ${vep_output} \
+        -o ${filtered_output} \
         --filter "Source = ${params.genome_annotation_version}"
     """
 }
