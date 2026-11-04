@@ -102,15 +102,23 @@ To run the pipeline, one input `*.YAML` and one `template.config` are needed. Wh
 
 ### VEP Specific Configuration
 | Input and Input Parameter | Required | Type | Description | Location |
-| vep_cache | yes | path | VEP cache. See [here](https://useast.ensembl.org/info/docs/tools/vep/script/vep_cache.html) |
-| genome_assembly_version | yes | string | Genome assembly version (*e.g.*, GRCh38) |
-| genome_annotation_version | yes | string | Genome annotation version (*e.g.*, GENCODEv34) |
-| annotation_gtf | yes | path | Genome anntotation GTF file. |
-| genome_fasta | yes | path | Genome assembly FASTA file. This should be obtained from the same source as `annotation_gtf` with the same version. |
-| chromosomes | yes | string | Chromosomes that the VEP records should be annotated. The format **must** match with `annotation_gtf`. |
+| ------------------------- | -------- | ---- | ----------- | -------- |
+| vep_cache | yes | path | VEP cache. See [here](https://useast.ensembl.org/info/docs/tools/vep/script/vep_cache.html) | config |
+| genome_assembly_version | yes | string | Genome assembly version (*e.g.*, GRCh38) | config |
+| genome_annotation_version | when `VEP_custom_gtf = true` | string | Genome annotation version (*e.g.*, GENCODEv34) | config |
+| annotation_gtf | when `VEP_custom_gtf = true` | path | Genome anntotation GTF file. | config |
+| genome_fasta | yes | path | Genome assembly FASTA file. This should be obtained from the same source as `annotation_gtf` with the same version. | config |
+| chromosomes | no | string | Chromosomes that the VEP records should be annotated, passed to `--chr`. The format **must** match with `annotation_gtf`. Set to `''` to annotate all chromosomes. | config |
+| VEP_output_format | yes | string | `tab` (default) or `vcf`. `vcf` writes a bgzipped, tabix-indexed VCF with a `CSQ` INFO field. | config |
+| VEP_custom_gtf | yes | boolean | Annotate with `--custom annotation_gtf` and filter to its transcripts, default is `true`. Set to `false` to use only the VEP cache. | config |
+| VEP_restrict_output | yes | boolean | Add `--distance 0 --no_intergenic`, default is `true`. | config |
+| VEP_extra_options | no | string | Extra options appended to the `vep` command, such as `--symbol --canonical --hgvs` | config |
 
 > [!IMPORTANT]
 > `annotation_gtf` must be sorted based on the coordinates of features (`sort -k1,1 -k4,4n`) and bgzipped. A index file created using `tabix` with suffix of ".tbi" must also present under the same directory.
+
+> [!NOTE]
+> The VEP version in `docker_image_VEP` must match the cache version in `vep_cache`.
 
 ---
 
@@ -131,7 +139,9 @@ Profiles can be selected to control which containerization system will be used. 
 |`{tool-version}_{dataset_id}_{sample_id}.vcf.gz`| `.vcf.gz` | Final VCF file |
 |`SnpEff-{version}_{dataset_id}_{sample_id}_summary.html` | `.html` | SnpEff HTML file (SnpEff)|
 |`SnpEff-{version}_{dataset_id}_{sample_id}_genes.txt` | `.txt` | SnpEff gene list (SnpEff)|
-|`VEP-{version}_{dataset_id}_{sample_id}.txt`| `.txt` | VEP annotation results |
+|`VEP-{version}_{dataset_id}_{sample_id}.tsv`| `.tsv` | VEP annotation results (`VEP_output_format = 'tab'`) |
+|`VEP-{version}_{dataset_id}_{sample_id}_filtered.txt`| `.txt` | VEP annotation results filtered to `annotation_gtf` transcripts (`VEP_output_format = 'tab'`, `VEP_custom_gtf = true`) |
+|`VEP-{version}_{dataset_id}_{sample_id}[_filtered].vcf.gz`| `.vcf.gz` & `.tbi` | VEP-annotated VCF; `_filtered` when `VEP_custom_gtf = true` (`VEP_output_format = 'vcf'`) |
 | `report.html`, `timeline.html`, `trace.txt`  | `.html` & `.txt` | Nextflow logs  |
 
 ---
