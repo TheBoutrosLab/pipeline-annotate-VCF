@@ -8,6 +8,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+### Added
+
+- Add VEP VCF output and options to toggle custom GTF annotation, output restrictions and extra VEP options
+
 ## [2.0.0] - 2026-10-30
 
 ### Changed
